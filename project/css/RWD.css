@@ -1,0 +1,43 @@
+/* -------------------------- *\
+	RWD
+\* -------------------------- */
+
+/* xl -()- lg -(1180px)- md -(820px)- sm -(420)- xs */
+@media screen and (max-width: 1180px){
+	.col-md-3{
+		width: 25%;
+	}
+	.col-md-4{
+		width: 33.3333333%;
+	}
+	.col-md-6{
+		width: 50%;
+	}
+	.col-md-12{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 820px){
+	.col-sm-3{
+		width: 25%;
+	}
+	.col-sm-4{
+		width: 33.3333333%;
+	}
+	.col-sm-6{
+		width: 50%;
+	}
+	.col-sm-12{
+		width: 100%;
+	}
+	/* ------------------------------------- */
+	.sidebar{
+		display: none;
+	}
+	.content{
+		padding-left: 0;
+	}
+}
+
+

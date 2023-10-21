@@ -1,0 +1,146 @@
+@charset "utf-8";
+/*
+ * Page 			: 
+ * Copyright 2023	:
+ * Author			: Chang Mao Yang
+ * Licensed			:
+ */
+/* -------------------------- *\
+	Content
+\* -------------------------- */
+/**
+ * Content ........... You are reading it!
+ * Globel ............ Set common styles
+ * Layout ............ Set grid styles
+ * Component ......... Set component styles
+ * iconss ............ Set some ison
+ * Utility ........... Set some tools style
+ */
+
+/* -------------------------- */
+/* card */
+#card-wrapper{
+	margin: 0px 16%;
+	margin-bottom: 50px;
+}
+
+#card-wrapper .text-container{
+	min-width: 300px;
+	width: 100%;
+	text-align: center;
+}
+
+.card-container{
+}
+
+.card{
+	display: inline-block;
+	width: 100%;
+	height: 180px;
+	
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+
+	padding: 0px 0px;
+	margin: 10px 0px;
+
+	overflow: hidden;
+	z-index: 100;
+
+	transform: translate(0);
+	transition: box-shadow 0.3s ;
+}
+
+.card:hover{
+	box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card:after{
+	/** 
+	 * using after to generate the inset shdow, 
+	 * or the inset show will be cover by the content.
+	 * */
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25) inset;
+}
+
+.img-container{
+	width: 100%;
+	height: 100%;
+}
+
+.card-img{
+	opacity: 1.0;
+	width: 100%;
+/*	height: 100%;*/
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+.card-caption{
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+
+	color: #b0b0b0;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	
+
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0em;
+
+	background: linear-gradient(0deg, 
+		rgba(255,255,255,1.0) 0%, 
+		rgba(255,255,255,1.0) 80%, 
+		rgba(255,255,255,0.0) 100%);
+}
+
+.title, .sub-title{
+	scroll-margin-top: 100px;
+}
+
+.title{
+	margin: 30px 0px;
+}
+
+.sub-title{
+	width: 100%;
+	margin: 10px 0px;
+	border-bottom: 1px solid #E7E7E7;
+}
+
+.card.adding{
+}
+
+.adding-icon{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+
+	border-radius: 50%;
+	height: auto;
+	width: auto;
+}
+
+.adding-icon:before{
+	/* #000000 -> #D0D0D0 */
+	filter: invert(94%) sepia(0%) saturate(1389%) hue-rotate(12deg) brightness(117%) contrast(63%);
+}
+
+

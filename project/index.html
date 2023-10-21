@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<!-- Basic meta -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="NoteTree: A webapp for organized note-taking! Access and visualize your notes with ease.">
+    <meta name="keywords" content="Organized notes, Google Drive notes, Note visualization">
+    <meta name="author" content="Chang Mao Yang">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph meta-->
+    <meta property="og:title" content="NoteTree">
+	<meta property="og:description" content="NoteTree: A webapp for organized note-taking! Access and visualize your notes with ease.">
+	<meta property="og:url" content="https://notetree.xyz">
+	<meta property="og:image" content="https://raw.githubusercontent.com/Jeffreymaomao/figure/main/fig4.jpg">
+
+	<!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jeffreymaomao/figure/main/fig2.ico">
+    
+    <!-- Specify the canonical URL of your page (if applicable) -->
+    <link rel="canonical" href="https://notetree.xyz">
+
+    <!-- CSS stylesheets -->
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+	<link rel="stylesheet" href="/css/home.css">
+	<link rel="stylesheet" href="/css/pages.css">
+	<link rel="stylesheet" href="/css/RWD.css">
+
+	<!-- JavaScript files -->
+	<script src="/js/lib/showdown.js"></script>
+	<script type="module" src="/js/main.js"></script>
+
+	<!-- Page title -->
+	<title> NoteTree </title>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Start header -->
+		<header class="header">
+			<div class="top-bar">
+				<div class="profile-info">
+					<div class="profile-img">
+						<img id="user-image"src="css/icon/self.png" alt=""> 
+					</div>
+					<div class="profile-name">
+						<div id="user-name"class="text">Chang Mao Yang</div>
+					</div>
+				</div>
+				<div class="search-container">
+					<input type="text" class="search-text" id="search-text" placeholder="search">
+					<div id="search-btn" class="icon search-icon"></div>
+				</div>
+			</div>
+		</header>
+		<!-- End header -->
+
+		<!-- Start main -->
+		<section class="main">
+			<div class="sidebar" id="sidebar">
+				<!-- Here JS function loadSideBar() will create all the data -->
+			</div>
+			<div class="content" id="content">
+				<!-- Here JS function loadHome() will create all the data -->
+			</div>
+		</section>
+		<!-- End main -->
+
+		<!-- Start footer -->
+		<footer class="footer">
+			<div class="copyright">
+				<p>© Copyright 2023 All rights reserved</p>
+			</div>
+		</footer>
+		<!-- End footer -->
+	</div>
+</body>
+</html>

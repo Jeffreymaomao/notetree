@@ -1,0 +1,115 @@
+* {
+    /*    position: relative;*/
+    /*    box-sizing: border-box;*/
+}
+
+#mindmap {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ==================================== */
+
+#container {
+    margin: 0px 0px;
+    width: auto;
+    width: auto;
+    height: auto;
+}
+
+#mindmap {
+    width: auto;
+    height: auto;
+    padding: 20px 30px;
+}
+
+#mindmap span {
+    margin: 0px;
+    padding: 0px;
+}
+
+#mindmap span a {
+    text-decoration: none;
+    display: block;
+    position: relative;
+    text-align: center;
+    min-width: 100px;
+
+    padding: 10px;
+    margin: 10px 0px;
+    color: white;
+    background-color: #bbb;
+/*    overflow: hidden;*/
+    box-shadow: 0 0 5px #2A2A2A inset, 0 0 10px #bbb;
+}
+
+/* ===================================== */
+
+#mindmap span a {
+    /*    background-color: white;*/
+    /*    border: 1px #ccc solid;*/
+    overflow: hidden;
+    border-radius: 10px;
+    transition: 0.3s;
+    z-index: 1;
+    transform: perspective(1px) translateZ(0);
+}
+#mindmap span a:hover{
+    box-shadow: 1px 1px 10px #333 inset, 0px 0px 15px #9900cc;
+}
+
+
+#mindmap span #center {
+    background-color: darkblue;
+    color: white;
+    padding: 10px 30px;
+    font-size: 25pt;
+    box-shadow: 0px 0px 10px #fff inset;
+    text-shadow: 0px 0px 10px #fff;
+
+}
+
+#mindmap span #author {
+    text-align: center;
+}
+
+#mindmap span a:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    clip-path: circle(0% at 50% 50%);
+    background: #9900cc;
+    transition: 0.3s;
+    opacity: 1;
+    z-index: -1;
+    box-shadow: 1px 1px 10px #333 inset, 0px 0px 50px #9900cc;
+}
+#mindmap span a:hover:before{
+    clip-path: circle(100% at 50% 50%);  
+}
+
+
+/* ===================================== */
+#mindmap_width {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*    background-color: #ccc;*/
+    padding: 20px;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+
+#mindmap_width:hover {
+    opacity: 1;
+}
+
+#mindmap_width input {
+    width: 80px;
+    border: 0;
+    text-align: right;
+}

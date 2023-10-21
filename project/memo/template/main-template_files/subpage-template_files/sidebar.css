@@ -1,0 +1,241 @@
+@charset "utf-8";
+/*
+ * Page 			: All the pages
+ * Copyright 2023	:
+ * Author			: Chang Mao Yang
+ * Licensed			:
+ */
+/* -------------------------- *\
+	Content
+\* -------------------------- */
+/**
+ * Content ........... You are reading it!
+ * Globel ............ Set common styles
+ * Layout ............ Set grid styles
+ * Component ......... Set component styles
+ * iconss ............ Set some ison
+ * Utility ........... Set some tools style
+ */
+
+/* -------------------------- */
+/* sidebar */
+.sidebar {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: calc(100vh - 64px);  /* 64px : same as top bar height */
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    overflow-y: scroll;
+    background-color: #fff;
+    z-index: 100;
+
+    margin-top: 64px;
+}
+
+
+/* -------------------------- *\
+	primary item
+\* -------------------------- */
+.sidebar-primary-menu{
+	display: block;
+    padding: 50px 0px;
+}
+
+
+.sidebar-primary-item{
+	display: block;
+	background-color: #fff;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 15px;
+
+	margin-top: 5px;
+	padding: 5px 5px;
+}
+
+.sidebar-primary-item .icon-container{
+	display: inline-block;
+	float: left;
+	height: 40px;
+	width: 40px;
+	padding: 6px;
+}
+.sidebar-primary-item .text-container{
+	display: inline-block;
+	padding: 12px;
+}
+
+.sidebar-primary-item .btn-container{
+	display: inline-block;
+	float: right;
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	text-align: center;
+	padding: 6px;
+}
+
+.sidebar-primary-item:hover{
+	background-color: #eee;
+}
+
+.sidebar-primary-item:hover .text,
+.sidebar-primary-item:hover .icon:before{
+	color: #797979;
+	filter: invert(48%) sepia(3%) saturate(6%) hue-rotate(348deg) brightness(98%) contrast(94%);
+}
+
+.sidebar-primary-item .btn-container:hover{
+	background-color: #ccc;
+}
+/* -------------------------- *\
+	secondary item
+\* -------------------------- */
+.sidebar-secondary-menu{
+	display: block;
+	margin: 0px;
+	padding: 0px;
+
+	overflow: hidden;
+
+	transition: max-height 0.3s;
+	max-height: 0;
+}
+
+.sidebar-secondary-item{
+	display: block;
+	border-left: #eee solid 2px;
+	margin-left: 20px;
+}
+
+.sidebar-secondary-item .text-container{
+	font-size: 11pt;
+	padding: 12px;
+	padding-left: 20px;
+	color: #d9d9d9;
+	
+
+}
+
+.sidebar-secondary-item:hover .text-container{
+	color: #797979;
+}
+
+
+/* -------------------------- *\
+	tertiary item
+\* -------------------------- */
+.sidebar-tertiary-menu {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+
+.sidebar-tertiary-item{
+	display: block;
+	border-left: #eee solid 2px;
+
+	margin-left: 20px;
+	padding-left: 30px;
+}
+.sidebar-tertiary-item .text-container{
+	font-size: 11pt;
+	padding-left: 20px;
+	color: #d9d9d9;
+	width: 100%;
+	padding: 10px;
+}
+.sidebar-tertiary-item:hover .text-container{
+	color: #797979;
+}
+
+.sidebar-tertiary-item:before{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 50%;
+	z-index: 10;
+	width: 30px;
+	border-bottom: #eee solid 2px;
+}
+
+/* -------------------------- *\
+	animation
+\* -------------------------- */
+
+
+
+/* -------------------------- *\
+	Icon
+\* -------------------------- */
+
+.icon {
+}
+
+.main-icon:before{
+	content: url(./icon/main.svg);
+}
+
+.Note-icon:before{
+	content: url(./icon/Note.svg);
+}
+
+.Code-icon:before{
+	content: url(./icon/Code.svg);
+}
+
+.Others-icon:before{
+	content: url(./icon/Others.svg);
+}
+
+
+.expanded-icon:before{
+	content: url(./icon/expanded.svg);
+}
+
+.collapsed-icon:before{
+	content: url(./icon/collapsed.svg);
+}
+
+
+
+
+
+/*------------------------------------------------------------------*
+ | [color transformation](https://www.zhangxinxu.com/sp/filter.html)|
+	
+#000000 -> #D0D0D0 
+filter: invert(94%) sepia(0%) saturate(1389%) hue-rotate(12deg) brightness(117%) contrast(63%);
+#000000 -> #797979
+filter: invert(48%) sepia(3%) saturate(6%) hue-rotate(348deg) brightness(98%) contrast(94%);
+
+ *------------------------------------------------------------------*/
+.collapsed:before{
+	/* #000000 -> #D0D0D0 */
+	filter: invert(94%) sepia(0%) saturate(1389%) hue-rotate(12deg) brightness(117%) contrast(63%);
+}
+
+.active .icon:before, .active .text,.active:after{
+	color: #8089E1;
+	filter: invert(60%) sepia(7%) saturate(3218%) hue-rotate(197deg) brightness(92%) contrast(91%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

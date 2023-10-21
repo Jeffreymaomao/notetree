@@ -1,0 +1,328 @@
+@charset "utf-8";
+/*
+ * Page 			: All the pages
+ * Copyright 2023	:
+ * Author			: Chang Mao Yang
+ * Licensed			:
+ */
+/* -------------------------- *\
+	Content
+\* -------------------------- */
+
+/**
+ * Content ........... You are reading it!
+ * Globel ............ Set common styles
+ * Layout ............ Set grid styles
+ * Component ......... Set component styles
+ * iconss ............ Set some ison
+ * Utility ........... Set some tools style
+ */
+
+/* -------------------------- *\
+	Globel
+\* -------------------------- */
+* {
+    box-sizing: border-box;
+    position: relative;
+}
+
+html,body {
+    font-family: '微軟正黑體', arial;
+    width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+/* text */
+.text-container{
+	display: inline-block;
+}
+
+.text{
+	color: rgba(217, 217, 217, 1);
+}
+
+h1.text{
+	font-weight: 150;
+	font-size: 50pt;
+	padding: 12px 0px;
+	color: #D9D9D9;
+}
+
+h2.text{
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 48px;
+	letter-spacing: 0em;
+	color: #797979;
+}
+
+h3.text{
+	font-size: 30px;
+	font-weight: 300;
+	line-height: 36px;
+	letter-spacing: 0em;
+	text-align: center;
+}
+
+p.text{
+}
+
+/* -------------------------- *\
+	Layout
+\* -------------------------- */
+/* grid system */
+
+
+.container {
+    max-width: 100vw;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.row {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.row:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.col-lg-6,
+.col-lg-4,
+.col-lg-3,
+.col-lg-12,
+.col-md-6,
+.col-md-4,
+.col-md-3,
+.col-md-12,
+.col-sm-6,
+.col-sm-4,
+.col-sm-3,
+.col-sm-12 {
+    float: left;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.col-lg-3 {
+    width: 25%;
+}
+
+.col-lg-4 {
+    width: 33.3333333%;
+}
+
+.col-lg-6 {
+    width: 50%;
+}
+
+.col-lg-12 {
+    width: 100%;
+}
+
+/* -------------------------- *\
+	RWD
+\* -------------------------- */
+
+/* xl -()- lg -(768px)- md -()- sm -()- xs */
+
+@media screen and (max-width: 768px){
+	.col-md-3{
+		width: 25%;
+	}
+	.col-md-4{
+		width: 33.3333333%;
+	}
+	.col-md-6{
+		width: 50%;
+	}
+	.col-md-12{
+		width: 100%;
+	}
+}
+
+/* -------------------------- *\
+	Component
+\* -------------------------- */
+
+/* -------------------------- */
+/* top-bar */
+.top-bar {
+    height: 64px;
+    width: 100%;
+    position: fixed;
+    z-index: 500;
+    width: 100%;
+    left: 0;
+    top: 0;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+}
+
+/* search */
+.search-container{
+	position: absolute;
+	right: 3%;
+	top: 25px;
+}
+
+.search-text{
+	border: 0;
+	padding: 3px;
+	border-bottom:1px solid #eee;
+	width: 200px;
+	color: #888;
+
+	transition: width 0.3s;
+}
+
+.search-text:focus{
+	outline: none;
+	width: 300px;
+}
+
+/* profile */
+.profile-info{
+	display: block;
+	position: absolute;
+	left: 16px;
+	top: 10px;
+}
+
+.profile-img{
+	float: left;
+	padding: 2px;
+}
+
+.profile-name{
+	float: right;
+	vertical-align: bottom;
+	font-size: 16px;
+	padding: 14px 15px;
+}
+
+/* main */
+.main{
+	margin-top: 64px; /* same as top bar height */
+}
+
+/* content */
+
+.content {
+	min-height: 100vh;
+	width: 100%;
+	height: 100%;
+	max-width: 100vw;
+	margin: 0 auto;
+	padding-left: 220px; /* same as sidebar width */
+}
+
+/* -------------------------- */
+/* footer */
+.footer{
+	margin-left: 220px;
+}
+
+.footer .copyright{
+	background-color: #444;
+	color: #ccc;
+	text-align: center;
+	line-height: 24px;
+	padding: 16px 0;
+	font-size: 14px;
+}
+
+
+/* -------------------------- *\
+	icon
+\* -------------------------- */
+.icon-container{
+	display: inline-block;
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	padding: 6px;
+}
+
+.adding-icon:before{
+	content: url(./icon/adding.svg);
+}
+
+.search-icon{
+	display: block;
+	padding: 2px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.search-icon:before{
+	content: url(./icon/search.svg);
+}
+
+.title-anchor-icon:after{
+	content: url("./icon/anchor.svg");
+	padding-left: 20px;
+}
+.sub-title-anchor-icon:after{
+	content: url("./icon/anchor.svg");
+	padding-left: 10px;
+}
+/*------------------------------------------------------------------*
+ | [color transformation](https://www.zhangxinxu.com/sp/filter.html)|
+ *------------------------------------------------------------------*/
+
+.icon:before{
+	/* #000000 -> #D0D0D0 */
+	filter: invert(94%) sepia(0%) saturate(1389%) hue-rotate(12deg) brightness(117%) contrast(63%);
+}
+
+.title-anchor-icon:after{
+	/* #000000 -> #797979 */
+	filter: invert(48%) sepia(3%) saturate(6%) hue-rotate(348deg) brightness(98%) contrast(94%);
+}
+.sub-title-anchor-icon:after{
+	/* #000000 -> #D0D0D0 */
+	filter: invert(94%) sepia(0%) saturate(1389%) hue-rotate(12deg) brightness(117%) contrast(63%);
+}
+
+
+
+/* -------------------------- *\
+	Utility
+\* -------------------------- */
+
+/* mask-dark */
+.mask-dark{
+	background-color: #eee;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+

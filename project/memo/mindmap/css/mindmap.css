@@ -1,0 +1,42 @@
+/**
+ * =====================================================
+ * https://dev.to/frankwisniewski/create-a-mindmap-22pb
+ * Author: Frank Wisniewski
+ * =====================================================
+ **/
+body {
+    font-family: system-ui, sans-serif;
+}
+
+#mySVG {
+    position: absolute;
+    z-index: -1
+}
+
+.path {
+    stroke: silver;
+    fill: none;
+    stroke-width: 2;
+}
+
+/** 
+ * ------------------------------------------------------
+ * mindmap box
+ * ------------------------------------------------------ 
+ **/
+.f-col {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+/** 
+ * ------------------------------------------------------
+ * Your mindmap container
+ * ------------------------------------------------------ 
+ **/
+
+#mindmap-container {
+    display: flex;
+    justify-content: space-between;
+}

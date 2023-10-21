@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8080/ -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	<link rel="icon" type="image/x-icon" href="http://localhost:8080/img/icon.ico">
+	
+	<link rel="stylesheet" href="./main-template_files/normalize.css">
+	<link rel="stylesheet" href="./main-template_files/global.css">
+	<link rel="stylesheet" href="./main-template_files/sidebar.css">
+	<link rel="stylesheet" href="./main-template_files/main.css">
+	<link rel="stylesheet" href="./main-template_files/pages.css">
+	
+	<script src="./main-template_files/sidebar.js" defer=""></script>
+	<script src="./main-template_files/load.js" defer=""></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', ()=>{
+			fetch('../memo/content.json')
+			.then((response) => response.json())
+			.then((json) => {
+				const primaryButtons = createSideBar(json, "main");
+				const content = document.getElementById("content");
+				
+				createHomePage(json);
+
+				for(var i=0;i<primaryButtons.length;i++){
+					const btn = primaryButtons[i];
+					if(i==0){
+						btn.addEventListener("click",(e)=>{
+							content.innerHTML = '';
+							createHomePage(json);
+
+							primaryButtons.forEach((btn)=>{
+								if (btn.classList.contains("active")) {
+								  btn.classList.remove("active");
+								}
+							})
+
+							btn.classList.add("active");
+						})
+					}else{
+						btn.addEventListener("click",(e)=>{
+							content.innerHTML = '';
+							const pageName = btn.querySelector(".text").innerHTML;
+							createCard(json, pageName);
+
+							primaryButtons.forEach((btn)=>{
+								if (btn.classList.contains("active")) {
+								  btn.classList.remove("active");
+								}
+							})
+
+							btn.classList.add("active");
+						})
+					}
+				}
+			})
+		});
+	</script>
+
+	<title>Jeffrey Project</title>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Start header -->
+		<header class="header">
+			<div class="top-bar">
+				<div class="search-bar">
+					<div class="profile-info">
+						<div class="profile-img">
+							<img src="./main-template_files/self.png" alt="">
+						</div>
+						<div class="profile-name">
+							<div class="text">Chang Mao Yang</div>
+						</div>
+					</div>
+					<div class="search-container">
+						<input type="text" class="search-text" id="search-text" placeholder="search">
+						<div id="search-btn" class="icon search-icon"></div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- End header -->
+
+		<!-- Start main -->
+		<section class="main">
+			<div class="sidebar" id="sidebar">
+				<!-- Here JS function loadSideBar() will create all the data -->
+			<div class="container"><div class="sidebar-primary-menu"><a class="sidebar-primary-item active" href="http://localhost:8080/#"><div class="icon-container"><div class="icon main-icon"></div></div><div class="text-container"><div class="text">main</div></div></a><a class="sidebar-primary-item" href="http://localhost:8080/#"><div class="icon-container"><div class="icon Note-icon"></div></div><div class="text-container"><div class="text">Note</div></div><div class="btn-container"><div class="icon collapsed-icon"></div></div></a><ul class="sidebar-secondary-menu"><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Note.html#high%20school">high school</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#high%20schoolClass">Class</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#high%20schoolScience%20Fair">Science Fair</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#high%20schoolDemos">Demos</a></li></ul><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Note.html#freshman">freshman</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#freshman1st%20Semester">1st Semester</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#freshman2nd%20Semester">2nd Semester</a></li></ul><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Note.html#sophomore">sophomore</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#sophomore1st%20Semester">1st Semester</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#sophomore2nd%20Semester">2nd Semester</a></li></ul><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Note.html#junior">junior</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#junior1st%20Semester">1st Semester</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#junior2nd%20Semester">2nd Semester</a></li></ul><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Note.html#Others">Others</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Note.html#OthersMathematics">Mathematics</a></li></ul></ul><a class="sidebar-primary-item" href="http://localhost:8080/#"><div class="icon-container"><div class="icon Code-icon"></div></div><div class="text-container"><div class="text">Code</div></div><div class="btn-container"><div class="icon collapsed-icon"></div></div></a><ul class="sidebar-secondary-menu"><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20Language">Programing Language</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20LanguageProject">Project</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20LanguagePython">Python</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20LanguageJavascript">Javascript</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20LanguageProcessing">Processing</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20LanguageDesmos">Desmos</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Programing%20LanguageC">C</a></li></ul><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Code.html#Markup%20language">Markup language</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Markup%20languageMarkdown">Markdown</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Markup%20languageLaTeX">LaTeX</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Code.html#Markup%20languageweb">web</a></li></ul></ul><a class="sidebar-primary-item" href="http://localhost:8080/#"><div class="icon-container"><div class="icon Others-icon"></div></div><div class="text-container"><div class="text">Others</div></div><div class="btn-container"><div class="icon collapsed-icon"></div></div></a><ul class="sidebar-secondary-menu"><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Others.html#Art">Art</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Others.html#Artblender">blender</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Others.html#Arthandwriting">handwriting</a></li></ul><li class="sidebar-secondary-item"><a class="text-container" href="http://localhost:8080/Others.html#Skate">Skate</a></li><ul class="sidebar-tertiary-menu"><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Others.html#Skateclip">clip</a></li><li class="sidebar-tertiary-item"><a class="text-container" href="http://localhost:8080/Others.html#Skatevideo">video</a></li></ul></ul></div></div></div>
+			<div class="content" id="content">
+				<!-- Here JS function loadHome() will create all the data -->
+			<div class="hero" id="link-wrapper"><div class="container"><div class="link-btn-container"><a class="link-btn" href="http://localhost:8080/#!"><div class="text-container"><h1 class="text">Note</h1></div></a><a class="link-btn" href="http://localhost:8080/#!"><div class="text-container"><h1 class="text">Code</h1></div></a><a class="link-btn" href="http://localhost:8080/#!"><div class="text-container"><h1 class="text">Others</h1></div></a></div></div></div><div class="hero" id="about-wrapper"><div class="mask-dark"></div><div class="container"><div class="about-container"><h1 class="text" id="about-title">About</h1><div class="text-container"><div class="text">
+	Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Quisquam alias molestias libero eos cumque labore culpa, expedita dolore deserunt adipisci ut temporibus omnis voluptatum molestiae, quia delectus optio architecto voluptatibus. Minus facilis voluptates ab possimus libero labore ex nemo rem commodi, distinctio nobis delectus eos, incidunt, cumque adipisci hic temporibus doloribus ad quae odit natus. Ipsam tempora labore ex suscipit! Magnam nihil similique at iste, odit, provident. Accusantium fugit corrupti velit doloribus nihil praesentium ea iure beatae, repellat inventore fuga assumenda cum voluptatem nostrum eos ut perferendis eveniet quas molestiae.
+	</div></div></div></div></div></div>
+		</section>
+		<!-- End main -->
+
+		<!-- Start footer -->
+		<footer class="footer">
+			<div class="copyright">
+				<p>© Copyright 2020 All rights reserved</p>
+			</div>
+		</footer>
+		<!-- End footer -->
+	</div>
+
+</body></html>
