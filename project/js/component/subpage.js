@@ -1,15 +1,16 @@
 import {get} from "../utility/get.js"
 import {visualize} from "../utility/visualize.js"
+import {forEachFolder} from "../utility/tools.js"
 
  
 function loadSubPage(struct, subpageId){
 	const content = document.getElementById("content");
 	content.innerHTML = "";
-	struct.children.forEach((page)=>{
+	forEachFolder(struct.children, (page)=>{
 		if(page.MimeType.includes("directory")){
-			page.children.forEach((title)=>{
-				title.children.forEach((subtitle)=>{
-					subtitle.children.forEach((subpage)=>{
+			forEachFolder(page.children, (title)=>{
+				forEachFolder(title.children, (subtitle)=>{
+					forEachFolder(subtitle.children, (subpage)=>{
 						if(subpage.id==subpageId){
 							/* ---------------------------------------- */
 							const cardWrapperDiv = document.createElement("div");
@@ -33,7 +34,7 @@ function loadSubPage(struct, subpageId){
 }
 
 function mainSubPage(struct, subpage, container){
-	subpage.children.forEach((element)=>{
+	forEachFolder(subpage.children, (element)=>{
 		var divDOM = document.getElementById(element.id);
 		if(!divDOM){
 			const div = document.createElement("div");

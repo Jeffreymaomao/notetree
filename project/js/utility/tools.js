@@ -36,5 +36,39 @@ function findPreviousElementSiblingWithClass(element, className) {
   return null;
 }
 
+function forEachFolder(array, callback) {
+    array.forEach(item => {
+        if (item.MimeType && item.MimeType.includes("directory")) {
+            callback(item);
+        }
+    });
+}
 
-export {getCurrentTime, createAddInputButton, findPreviousElementSiblingWithClass};
+function forEachImage(array, callback) {
+    array.forEach(item => {
+        if (item.MimeType && item.MimeType.includes("image")) {
+            callback(item);
+        }
+    });
+}
+
+function getLatestImage(files) {
+    let latestFile = null;
+    let latestTime = null;
+
+    files.forEach((file) => {
+        const time = new Date(file.time);
+        if (file.MimeType.includes("image")) {
+            if (!latestTime || time > latestTime) {
+                latestTime = time;
+                latestFile = file;
+            }
+        }
+    });
+
+    return latestFile;
+}
+
+
+
+export {getCurrentTime, createAddInputButton, findPreviousElementSiblingWithClass, forEachFolder, forEachImage, getLatestImage};

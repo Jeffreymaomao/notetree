@@ -1,8 +1,10 @@
 import {post} from "../utility/post.js"
-import {createAddInputButton} from "../utility/tools.js"
+import {get} from "../utility/get.js"
+import {createAddInputButton, forEachFolder, forEachImage, getLatestImage} from "../utility/tools.js"
 
 /* --------------------------------------------- */
 function loadHome(struct){
+	const user = struct.user;
 	const content = document.getElementById("content");
 	content.innerHTML = "";
 
@@ -20,13 +22,39 @@ function loadHome(struct){
 	linkWrapperContainerDiv.classList.add("container");
 	linkBtnContainerDiv.classList.add("link-btn-container");
 
-	struct.children.forEach((page)=>{
-		if(page.MimeType.includes("directory")){
-			createLinkButton(page.name, `?page=${page.id}`, linkBtnContainerDiv);
-		}
+	forEachFolder(struct.children, (page)=>{
+		const {linkBtnImg} = createLinkButton(page.name, `?page=${page.id}`, linkBtnContainerDiv);
+		setLinkButtonBackground(user, page, linkBtnImg);
 	})
 
-	homeAddButton(linkBtnContainerDiv, struct);
+	// homeAddButton(linkBtnContainerDiv, struct);
+}
+
+function setLinkButtonBackground(user, page, linkBtnImg) {
+
+	// background image find order
+	// 1. page.name-background
+	// 2. page.name-bavkground (lower case)
+	// 3. image.name includes background
+	// 4. lastest image
+    const backgroundImage = page.children.find(image => 
+        image.MimeType.includes("image") && 
+        (image.name.includes(`${page.name}-background`) ||
+         image.name.includes(`${page.name.toLowerCase()}-background`) ||
+         image.name.includes("background"))
+    ) || getLatestImage(page.children);
+
+
+    if (backgroundImage) {
+        get(user, backgroundImage.id).then((data) => {
+            const blob = new Blob([new Uint8Array(data.bytes)], { type: data.MimeType });
+            const url = URL.createObjectURL(blob);
+            linkBtnImg.src = url;
+            linkBtnImg.onload = function() {
+                URL.revokeObjectURL(url);
+            }
+        });
+    }
 }
 
 function createLinkButton(name, href, linkBtnContainerDiv) {
@@ -55,8 +83,9 @@ function createLinkButton(name, href, linkBtnContainerDiv) {
 		const addIcon = document.createElement("div")
 		addIcon.classList.add("adding-icon");
 		linkBtnA.appendChild(addIcon);
-		return {linkBtnA, linkBtnImg, linkTextContainerDiv, linkTextH1, addIcon}
+		return {linkBtnA, linkBtnImg, linkTextContainerDiv, linkTextH1, addIcon} // this is return for adding button
 	}
+	return {linkBtnImg} // this is return for create button 
 }
 
 function homeAddButton(buttonContainerDiv, struct){

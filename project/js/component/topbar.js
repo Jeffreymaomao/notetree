@@ -1,4 +1,6 @@
 import {get} from "../utility/get.js"
+import {getLatestImage} from "../utility/tools.js"
+
 
 
 function loadTopBar(struct){
@@ -8,30 +10,26 @@ function loadTopBar(struct){
 	const userImageDom = document.getElementById("user-image");
 	const userNameDom = document.getElementById("user-name");
 	const user = struct.user;
+	const userImageBase64 = sessionStorage.getItem("userImage");
 
 	if(user){
 		userNameDom.innerText = user;
 	}
 
-	struct.children.forEach((file)=>{
-		if(file.MimeType.includes("image")){
+	if(userImageBase64){
+		userImageDom.src = "data:image/jpeg;base64," + userImageBase64;
+	}
 
-			if(userImageDom){
-				get(user, file.id).then((data)=>{
 
-					const blob = new Blob([new Uint8Array(data.bytes)], { type: data.MimeType });
-					const url = URL.createObjectURL(blob);
-					userImageDom.src = url;
-					userImageDom.addEventListener("onload",function(){
-						URL.revokeObjectURL(url);
-					})
+	const latestFile = getLatestImage(struct.children);
 
-				})
-			}
-
-		}
-	})
-
+	if (latestFile && userImageDom) {
+	    get(user, latestFile.id).then((data) => {
+	        let base64Image = btoa(String.fromCharCode(...new Uint8Array(data.bytes)));
+	        sessionStorage.setItem("userImage", base64Image);
+	        userImageDom.src = "data:image/jpeg;base64," + base64Image;
+	    });
+	}
 
 	// --------------------------------
 }

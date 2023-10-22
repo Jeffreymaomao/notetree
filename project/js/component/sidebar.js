@@ -1,5 +1,5 @@
 import {post} from "../utility/post.js"
-import {createAddInputButton} from "../utility/tools.js"
+import {createAddInputButton, forEachFolder} from "../utility/tools.js"
 
 /* --------------------------------------------- */
 /* sidebar */
@@ -24,29 +24,30 @@ function loadSideBar(struct, pageLocation, subpageLocation){
 	sidebarItems.push(
 		createSidebarItem(struct, `?page=${struct.id}`, isHome, false)
 	);
-	/* page */
-	struct.children.forEach((page)=>{
-		if(page.MimeType.includes("directory")){
-			var active = pageLocation===page.id;
-			if(!active){
-				page.children.forEach((title)=>{
-					title.children.forEach((subtitle)=>{
-						subtitle.children.forEach((subpage)=>{
-							if(subpageLocation===subpage.id){
-								active = true;
-							}
-						})
+
+	forEachFolder(struct.children, (page)=>{
+		var active = pageLocation===page.id;
+		if(!active){
+			forEachFolder(page.children,(title)=>{
+				forEachFolder(title.children, (subtitle)=>{
+					forEachFolder(subtitle.children,(subpage)=>{
+						if(subpageLocation===subpage.id){
+							active = true;
+						}
 					})
 				})
-			}
-			sidebarItems.push(
-				createSidebarItem(page, `?page=${page.id}`, active, true)
-			);
-			sidebarItems.push(
-				createNestedList(page)
-			);
+			})
 		}
+		sidebarItems.push(
+			createSidebarItem(page, `?page=${page.id}`, active, true)
+		);
+		sidebarItems.push(
+			createNestedList(page)
+		);
 	})
+
+
+
 
 	sidebarListDiv.append(...sidebarItems);
 	/* append primary button DOM element*/
@@ -104,7 +105,7 @@ function createNestedList(page) {
 	const list = document.createElement('ul');
 	list.classList.add('sidebar-secondary-menu');
 
-	page.children.forEach(item => {
+	forEachFolder(page.children, (item) => {
 		const listItem = document.createElement('li');
 		listItem.classList.add('sidebar-secondary-item');
 
@@ -122,7 +123,7 @@ function createNestedList(page) {
 		listItemA.textContent = item.name;
 		listItemA.href = `?page=${page.id}#${item.id}`
 
-		item.children.forEach(sub=>{
+		forEachFolder(item.children, (sub)=>{
 			const subItem = document.createElement('li');
 			subItem.classList.add("sidebar-tertiary-item");
 

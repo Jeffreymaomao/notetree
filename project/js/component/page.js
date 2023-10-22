@@ -1,5 +1,5 @@
 import {post} from "../utility/post.js"
-import {createAddInputButton} from "../utility/tools.js"
+import {createAddInputButton, forEachFolder} from "../utility/tools.js"
 
 /* --------------------------------------------- */
 function loadPage(struct, pageLocation) {
@@ -16,24 +16,24 @@ function loadPage(struct, pageLocation) {
     content.appendChild(cardWrapperDiv);
     cardWrapperDiv.appendChild(cardWrapperContainerDiv);
 
-    struct.children.forEach((page) => {
+    forEachFolder(struct.children, (page) => {
         if (page.MimeType.includes("directory") && page.id === pageLocation ) {
-            page.children.forEach((title) => {
+            forEachFolder(page.children, (title) => {
             	/* add title */
                 const titleDiv = createTitle(title);
                 cardWrapperContainerDiv.appendChild(titleDiv);
 
-                title.children.forEach((subtitle) => {
+                forEachFolder(title.children, (subtitle) => {
                 	/* add subtitle */
 	                const { subtitleDiv, cardContainer } = createSubtitle(subtitle);
-                    subtitle.children.forEach((card) => {
+                    forEachFolder(subtitle.children, (card) => {
                     	/* add card */
                         createCard(card.name, `?subpage=${card.id}`, cardContainer);
                     });
-                    cardAddButton(cardContainer, struct);
-
 	                cardWrapperContainerDiv.appendChild(subtitleDiv);
 	                cardWrapperContainerDiv.appendChild(cardContainer);
+
+	                // cardAddButton(cardContainer, struct);
                 });
             });
             // const TitleAddButton = createTitle();
@@ -162,7 +162,7 @@ function cardAddButton(cardContainer, struct){
 		window.addEventListener('click', cardAddPost);
 		function cardAddPost(event){
 			addIcon.style.display = "none";
-			if(![cardDiv, cardA, cardImgDiv, cardCaptionH4, cardImg, addIcon].includes(event.target)){
+			if(![cardDiv, cardA, cardImgDiv, cardCaptionH4, cardImg, addIcon, addInput].includes(event.target)){
 				addInput.remove();
 				if(inputChanged&&addInput.value!=""){
 					const name = addInput.value;
