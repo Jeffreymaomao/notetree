@@ -1,6 +1,6 @@
 import {post} from "../utility/post.js"
 import {get} from "../utility/get.js"
-import {createAddInputButton, forEachFolder, forEachImage, getLatestImage} from "../utility/tools.js"
+import {createAddInputButton, forEachFolder, forEachImage, findBackgroundImage, sortBy} from "../utility/tools.js"
 
 /* --------------------------------------------- */
 function loadHome(struct){
@@ -22,7 +22,10 @@ function loadHome(struct){
 	linkWrapperContainerDiv.classList.add("container");
 	linkBtnContainerDiv.classList.add("link-btn-container");
 
-	forEachFolder(struct.children, (page)=>{
+	const pages = struct.children;
+	pages.sort(sortBy.Length);
+
+	forEachFolder(pages, (page)=>{
 		const {linkBtnImg} = createLinkButton(page.name, `?page=${page.id}`, linkBtnContainerDiv);
 		setLinkButtonBackground(user, page, linkBtnImg);
 	})
@@ -31,19 +34,7 @@ function loadHome(struct){
 }
 
 function setLinkButtonBackground(user, page, linkBtnImg) {
-
-	// background image find order
-	// 1. page.name-background
-	// 2. page.name-bavkground (lower case)
-	// 3. image.name includes background
-	// 4. lastest image
-    const backgroundImage = page.children.find(image => 
-        image.MimeType.includes("image") && 
-        (image.name.includes(`${page.name}-background`) ||
-         image.name.includes(`${page.name.toLowerCase()}-background`) ||
-         image.name.includes("background"))
-    ) || getLatestImage(page.children);
-
+    const backgroundImage = findBackgroundImage(page);
 
     if (backgroundImage) {
         get(user, backgroundImage.id).then((data) => {

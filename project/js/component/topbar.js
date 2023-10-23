@@ -4,8 +4,6 @@ import {getLatestImage} from "../utility/tools.js"
 
 
 function loadTopBar(struct){
-	console.log("Here start to load the top bar.");
-
 	// --------------------------------
 	const userImageDom = document.getElementById("user-image");
 	const userNameDom = document.getElementById("user-name");

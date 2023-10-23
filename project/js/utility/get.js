@@ -13,8 +13,8 @@ function get(user, id){
 	return fetch(fetchURL, { "method": "GET"})
 		.then((res) => {return res.text();})
         .catch(err => {
-            console.error(err);
-            throw err;  // Re-throw the error so that it can be caught by the caller
+            // console.error(err);
+            // throw err;  // Re-throw the error so that it can be caught by the caller
         })
 		.then((result) => {
 			const Drive = JSON.parse(result);

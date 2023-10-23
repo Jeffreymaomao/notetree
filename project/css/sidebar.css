@@ -24,17 +24,23 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 220px;
     height: calc(100vh - 64px);  /* 64px : same as top bar height */
+    margin-top: 64px;
 
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     overflow-y: scroll;
     background-color: #fff;
     z-index: 100;
 
-    margin-top: 64px;
+    
+
+    width: 220px;
+    transition: width 0.2s;
 }
 
+.sidebar .container{
+	width: 220px;
+}
 
 /* -------------------------- *\
 	primary item

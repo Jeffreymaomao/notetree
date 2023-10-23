@@ -38,16 +38,12 @@ function loadSideBar(struct, pageLocation, subpageLocation){
 				})
 			})
 		}
-		sidebarItems.push(
-			createSidebarItem(page, `?page=${page.id}`, active, true)
-		);
-		sidebarItems.push(
-			createNestedList(page)
-		);
+
+		const sidebarItem = createSidebarItem(page, `?page=${page.id}`, active, true);
+		const sidebarList = createNestedList(page, active);
+		sidebarItems.push(sidebarItem);
+		sidebarItems.push(sidebarList);
 	})
-
-
-
 
 	sidebarListDiv.append(...sidebarItems);
 	/* append primary button DOM element*/
@@ -56,6 +52,8 @@ function loadSideBar(struct, pageLocation, subpageLocation){
 function createSidebarItem(obj, href, isActive, expandBtn) {
 	const item = document.createElement('a');
 	item.classList.add('sidebar-primary-item');
+	item.draggable = false;
+
 	item.href = href;
 	if (isActive) {
 		item.classList.add('active');
@@ -87,7 +85,12 @@ function createSidebarItem(obj, href, isActive, expandBtn) {
 		expandContainer.classList.add("btn-container");
 
 		const expand = document.createElement('div');
-		expand.classList.add("icon","collapsed-icon");
+		expand.classList.add("icon");
+		if(isActive){
+			expand.classList.add("expanded-icon");
+		}else{
+			expand.classList.add("collapsed-icon");
+		}
 
 		item.appendChild(expandContainer);
 		expandContainer.appendChild(expand);
@@ -101,7 +104,7 @@ function createSidebarItem(obj, href, isActive, expandBtn) {
 	return item;
 }
 
-function createNestedList(page) {
+function createNestedList(page, isActive) {
 	const list = document.createElement('ul');
 	list.classList.add('sidebar-secondary-menu');
 
@@ -111,6 +114,7 @@ function createNestedList(page) {
 
 		const listItemA = document.createElement('a');
 		listItemA.classList.add("text-container");
+		listItemA.draggable = false;
 
 		const listItemSubList = document.createElement('ul');
 		listItemSubList.classList.add("sidebar-tertiary-menu");
@@ -128,6 +132,7 @@ function createNestedList(page) {
 			subItem.classList.add("sidebar-tertiary-item");
 
 			const subItemA = document.createElement('a');
+			subItemA.draggable = false;
 			subItemA.classList.add("text-container");
 
 			listItemSubList.appendChild(subItem);
@@ -137,6 +142,14 @@ function createNestedList(page) {
 			subItemA.href = `?page=${page.id}#${sub.id}`;
 		})
 	});
+
+	// Here using a trick: `setTimeout with 0ms makes code run after the current event loop tick.`
+	setTimeout(() => {
+        if (isActive) {
+            list.style.maxHeight = list.scrollHeight + "px";
+        }
+    }, 0);
+
 
 	return list;
 }

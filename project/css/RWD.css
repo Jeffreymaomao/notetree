@@ -2,8 +2,24 @@
 	RWD
 \* -------------------------- */
 
-/* xl -()- lg -(1180px)- md -(820px)- sm -(420)- xs */
-@media screen and (max-width: 1180px){
+/* xl -()- lg -(1180px)- md -(820px)- sm -(450)- xs */
+
+@media (min-width: 1180px) {
+    .col-lg-3{
+		width: 25%;
+	}
+	.col-lg-4{
+		width: 33.3333333%;
+	}
+	.col-lg-6{
+		width: 50%;
+	}
+	.col-lg-12{
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 820px) and (max-width: 1180px){
 	.col-md-3{
 		width: 25%;
 	}
@@ -33,11 +49,45 @@
 	}
 	/* ------------------------------------- */
 	.sidebar{
-		display: none;
+/*		display: none;*/
+		width: 0;
 	}
 	.content{
 		padding-left: 0;
 	}
+	.footer{
+		margin-left: 0;
+	}
+	/* ------------------------------------- */
+	.link-btn-container{
+		padding-left: 20%;
+	}
 }
 
+@media screen and (max-width: 450px){
+	.search-text{
+			display: none;
+	}
+	.profile-info{
+		z-index: 100;
+	}
+	.search-container{
+		z-index: 10;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 64px;
+		height: 64px;
+	}
+	.search-icon{
+		width: 20px;
+		height: 20px;
+
+		margin-top: 50%;
+		margin-right: 50%;
+		transform: translate(50%,-50%);
+		
+		
+	}
+}
 

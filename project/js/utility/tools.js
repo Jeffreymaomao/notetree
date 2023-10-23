@@ -21,7 +21,6 @@ function getCurrentTime() {
   return formattedDateTime;
 }
 
-
 function findPreviousElementSiblingWithClass(element, className) {
   let previousSibling = element.previousElementSibling;
   console.log(previousSibling)
@@ -68,7 +67,65 @@ function getLatestImage(files) {
 
     return latestFile;
 }
+/* --- */
+function findBackgroundImage(page){
+    // background image find order
+    // 1. page.name-background
+    // 2. page.name-bavkground (lower case)
+    // 3. image.name includes background
+    // 4. lastest image
+    return page.children.find((image) => 
+        image.MimeType.includes("image") && 
+        (
+            image.name.includes(`${page.name}-background`) ||
+            image.name.includes(`${page.name.toLowerCase()}-background`) ||
+            image.name.includes(page.name) ||
+            image.name.includes(page.name.toLowerCase()) ||
+            image.name.includes("background") || 
+            page.name.includes(image.name) || 
+            page.name.toLowerCase().includes(image.name)
+        )
+    ) || getLatestImage(page.children);
+}
 
 
+/* --- */
+function sortByTime(a,b){
+    if(a.time && b.time){
+        return new Date(a.time) - new Date(b.time);
+    }
+    return 0;
+}
 
-export {getCurrentTime, createAddInputButton, findPreviousElementSiblingWithClass, forEachFolder, forEachImage, getLatestImage};
+function sortByLength(a,b){
+    if(a.name && b.name){
+        return a.name.length - b.name.length;
+    }
+    return 0;
+}
+
+function sortByUnicode(a, b) {
+    if (a.name && b.name) {
+        return a.name.localeCompare(b.name);
+    }
+    return 0;
+}
+
+const sortBy = {
+    Length: sortByLength,
+    Time: sortByTime,
+    Unicode: sortByUnicode
+}
+
+export {
+    getCurrentTime, 
+    createAddInputButton, 
+    findPreviousElementSiblingWithClass, 
+    forEachFolder, 
+    forEachImage, 
+    getLatestImage, 
+    findBackgroundImage, 
+    sortByTime, 
+    sortByLength,
+    sortBy
+};
