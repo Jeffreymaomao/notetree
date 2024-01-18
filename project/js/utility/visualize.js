@@ -1,17 +1,20 @@
+import {get} from "../utility/get.js";
+
 function visualize(file){
-	const id = file.id;
+	const contentContainer = document.createElement("div");
+	contentContainer.classList.add("content-container");
 	/* ----------------- Display Image ----------------- */
 	if(file.MimeType.includes("image")){
 		const img = document.createElement("img");
 		const blob = new Blob([new Uint8Array(file.bytes)], { type: file.MimeType });
 		const url = URL.createObjectURL(blob);
-		img.width = "500";
 		img.src = url;
 		img.classList.add("image")
 		img.addEventListener("onload",function(){
 			URL.revokeObjectURL(url);
 		})
-		return img;
+		contentContainer.appendChild(img);
+		return contentContainer;
 	}
 	/* ----------------- Display Text ----------------- */
 	if(file.MimeType.includes("text")){
@@ -29,22 +32,44 @@ function visualize(file){
 		p.textContent = text;
 		div.classList.add("text")
 		div.appendChild(p);
-		return div;
+		contentContainer.appendChild(div);
+		return contentContainer;
 	}
 	/* ----------------- Display PDF ----------------- */
 	if(file.MimeType.includes("pdf")){
 		const iframe = document.createElement("iframe");
 		const blob = new Blob([new Uint8Array(file.bytes)], { type: file.MimeType });
 		const url = URL.createObjectURL(blob);
-		iframe.height = "700px";
-		iframe.width = "500px";
 		iframe.src = url;
 		iframe.classList.add("iframe")
 		iframe.addEventListener("onload",function(){
 			URL.revokeObjectURL(url);
-		})
-		return iframe;
+		});
+
+		iframe.height = document.body.scrollHeight - 64;
+		window.addEventListener("resize",(e)=>{
+			console.log(document.body.scrollHeight);
+			iframe.height = document.body.scrollHeight - 64;
+		});
+		contentContainer.appendChild(iframe);
+		return contentContainer;
 	}
+	return null;
 }
 
-export {visualize};
+function loadFile(struct, id) {
+	const contentDOM = document.querySelector("#content");
+	contentDOM.classList.toggle("loader");
+	get(struct.user, id).then((result) => {
+		contentDOM.classList.toggle("loader");
+		const displayDiv = visualize(result);
+		if(displayDiv){
+			contentDOM.appendChild(displayDiv);
+			displayDiv.classList.add("expand");
+		}
+	}).catch((error) => {
+	    console.error(error);
+	});
+}
+
+export {visualize, loadFile};

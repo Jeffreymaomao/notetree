@@ -5,18 +5,22 @@ import {loadSubPage} from "./component/subpage.js";
 import {loadSideBar} from "./component/sidebar.js";
 import {md5, sha256} from "./lib/hash.js";
 import {get} from "./utility/get.js"
+import {loadFile} from "./utility/visualize.js"
 
 const user = "Chang Mao Yang";
+var loadedNum = 0;
 
 window.addEventListener("load", (e) => {
 	// if struct already in window.localStorage 
 	// --- 1. first update ---
-    if (window.localStorage.NoteTree) {
+    if(window.localStorage.NoteTree) {
         const NoteTree = JSON.parse(window.localStorage.NoteTree);
         if (NoteTree.struct) {
             main(NoteTree.struct);
-            console.log("first load from localStorage !");
+            console.log("The first load from localStorage !");
         }
+    }else{
+    	document.querySelector(".content").classList.add("loader");
     }
 
     // --- 2. get the struct frome Drive ---
@@ -35,12 +39,20 @@ window.addEventListener("load", (e) => {
 
 /* --------------------------------------------- */
 function main(struct){
+	document.querySelector(".content").classList.remove("loader");
+
 	loadTopBar(struct);
 	const urlParams = new URLSearchParams(window.location.search);
 	const page = urlParams.get("page");
 	const subpage = urlParams.get("subpage");
 	const isHome = ((page === struct.id)||(!page)) && (!subpage); 
-	if(isHome){
+	const id = urlParams.get("id");
+	// ----
+	if(id){
+		if(loadedNum) return;
+		loadFile(struct, id);
+		loadedNum += 1;
+	}else if(isHome){
 		loadHome(struct);
 	}else if(page){
 		loadPage(struct, page);

@@ -1,0 +1,53 @@
+.folder-container{
+    overflow : scroll;
+    color: #666;
+    padding: 14px;
+    margin-top: 10px;
+    border-left: 2px solid #ccc;
+}
+
+/* ---  */
+.file-container{
+    overflow : scroll;
+    color: #ccc;
+    padding: 14px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.25) inset;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.file-container.get:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.25) inset, 
+				0px 0px 3px rgba(0,0,0,0.20);
+}
+
+/* --- */
+.file-container.get{
+	color: #555;
+}
+
+.file-container.get-empty{
+	color: rgba(255,50,50,0.6);
+}
+
+
+/* ---  */
+.content-container .image,
+.content-container .iframe,
+.content-container .text{
+	width: 100%;
+}
+
+
+.content-container{
+	overflow: scroll;
+	max-height: 0px;
+	transition: max-height 0.3s ease-in-out;
+}
+.content-container.expand{
+	max-height: calc(100vh - 64px);
+}
+
+
+/*2024/1/29 -> 2024/3/17*/
