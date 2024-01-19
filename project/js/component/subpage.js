@@ -21,8 +21,17 @@ function loadSubPage(struct, subpageId){
 						    const cardWrapperContainerDiv = document.createElement("div");
 						    cardWrapperContainerDiv.classList.add("container");
 
+						    const titleH1ContainerDiv = document.createElement("a");
+						    const titleH1Div = document.createElement("h1");
+						    titleH1ContainerDiv.draggable = false;
+						    titleH1ContainerDiv.href = `#${subpage.id}`;
+						    titleH1Div.innerText = subpage.name;
+						    titleH1Div.classList.add("text");
+
 						    content.appendChild(cardWrapperDiv);
 						    cardWrapperDiv.appendChild(cardWrapperContainerDiv);
+						    cardWrapperContainerDiv.appendChild(titleH1ContainerDiv);
+						    titleH1ContainerDiv.appendChild(titleH1Div);
 
 							mainSubPage(struct, subpage, cardWrapperContainerDiv);
 							/* ---------------------------------------- */

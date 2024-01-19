@@ -60,7 +60,8 @@ h1.text, h1>input{
 	font-weight: 150;
 	font-size: 50pt;
 	padding: 12px 0px;
-	color: #D9D9D9;
+	color: #797979;
+	text-align: center;
 }
 
 h2.text, h2>input{

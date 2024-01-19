@@ -24,54 +24,43 @@ function loadSideBar(struct, pageLocation, subpageLocation){
 	sidebarItems.push(
 		createSidebarItem(struct, `?page=${struct.id}`, isHome, false)
 	);
-
+	var isHereId = null;
 	forEachFolder(struct.children, (page)=>{
 		var expand = pageLocation===page.id; // check first order
 		if(!expand){
 			forEachFolder(page.children,(title)=>{
 				forEachFolder(title.children, (subtitle)=>{
 					forEachFolder(subtitle.children,(subpage)=>{
-						if(subpageLocation===subpage.id) expand = true;
+						if(subpageLocation===subpage.id){
+							expand = true;
+							isHereId = subtitle.id;
+							return;
+						}
 					})
 				})
 			})
 		}
 
 		const sidebarItem = createSidebarItem(page, `?page=${page.id}`, expand, true);
-		const sidebarList = createNestedList(page, expand);
+		const sidebarList = createNestedList(page, expand, isHereId);
 		sidebarItems.push(sidebarItem);
 		sidebarItems.push(sidebarList);
 	});
 
 	sidebarListDiv.append(...sidebarItems);
 	/* append primary button DOM element*/
-	checkSideBarItemIsHere();
+	if(!isHereId){
+		checkSideBarItemIsHere();
+	}
 	addEventListener("hashchange", checkSideBarItemIsHere);
 }
 
-function checkSideBarItemIsHere(e){
+function checkSideBarItemIsHere(isHereId, e){
 	const hash = window.location.hash;
 	[...document.querySelectorAll(".sidebar-secondary-item, .sidebar-tertiary-item")].forEach((item)=>{
 		item.classList.remove("is-here")
 		const id = item.querySelector("a").href.split("#").reverse()[0];
 		if(hash===`#${id}`) item.classList.add("is-here")
-	});
-}
-
-function checkExpandAndLocation(struct, page, hash){
-	forEachFolder(struct.children, (page)=>{
-		var expand = pageLocation===page.id; // check first order
-		if(!expand){
-			forEachFolder(page.children,(title)=>{
-				if(hash===`#${title.id}`){console.log(`title: ${title.name}`);return;}
-				forEachFolder(title.children, (subtitle)=>{
-					if(hash===`#${subtitle.id}`){console.log(`subtitle: ${subtitle.name}`);return;}
-					forEachFolder(subtitle.children,(subpage)=>{
-						if(subpageLocation===subpage.id) expand = true;
-					})
-				})
-			})
-		}
 	});
 }
 
@@ -130,7 +119,7 @@ function createSidebarItem(obj, href, expand, expandBtn) {
 	return item;
 }
 
-function createNestedList(page, expand) {
+function createNestedList(page, expand, isHereId) {
 	const list = document.createElement('ul');
 	list.classList.add('sidebar-secondary-menu');
 
@@ -161,11 +150,15 @@ function createNestedList(page, expand) {
 			subItemA.draggable = false;
 			subItemA.classList.add("text-container");
 
-			listItemSubList.appendChild(subItem);
-			subItem.appendChild(subItemA);
-
 			subItemA.textContent = sub.name;
 			subItemA.href = `?page=${page.id}#${sub.id}`;
+
+			if(isHereId && (sub.id===isHereId)){
+				subItem.classList.add("is-here");
+			}
+
+			listItemSubList.appendChild(subItem);
+			subItem.appendChild(subItemA);
 		})
 	});
 
@@ -175,8 +168,6 @@ function createNestedList(page, expand) {
             list.style.maxHeight = list.scrollHeight + "px";
         }
     }, 0);
-
-
 	return list;
 }
 

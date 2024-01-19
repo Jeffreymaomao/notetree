@@ -60,6 +60,10 @@
 	bottom: 0px;
 }
 
+.link-btn .text{
+	color: #dedede;
+}
+
 /* about */
 .about-container{
 	padding-left: 25%;
