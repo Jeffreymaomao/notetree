@@ -23,7 +23,7 @@ function loadHome(struct){
 	linkBtnContainerDiv.classList.add("link-btn-container");
 
 	const pages = struct.children;
-	pages.sort(sortBy.Length);
+	pages.sort(sortBy.custom);
 
 	forEachFolder(pages, (page)=>{
 		const {linkBtnImg} = createLinkButton(page.name, `?page=${page.id}`, linkBtnContainerDiv);

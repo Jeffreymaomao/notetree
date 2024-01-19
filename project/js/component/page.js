@@ -20,24 +20,24 @@ function loadPage(struct, pageLocation) {
     cardWrapperDiv.appendChild(cardWrapperContainerDiv);
 
     const pages = struct.children;
-	pages.sort(sortBy.Unicode);
+	pages.sort(sortBy.custom);
     forEachFolder(pages, (page) => {
         if (page.MimeType.includes("directory") && page.id === pageLocation ) {
 
         	const titles = page.children;
-			titles.sort(sortBy.Unicode).reverse();
+			titles.sort(sortBy.custom);
             forEachFolder(titles, (title) => {
             	/* add title */
                 const titleDiv = createTitle(title);
                 cardWrapperContainerDiv.appendChild(titleDiv);
 
                 const subtitles = title.children;
-				subtitles.sort(sortBy.Unicode).reverse();
+				subtitles.sort(sortBy.custom);
                 forEachFolder(subtitles, (subtitle) => {
                 	/* add subtitle */
 	                const { subtitleDiv, cardContainer } = createSubtitle(subtitle);
 	                const cards = subtitle.children;
-					cards.sort(sortBy.Unicode);
+					cards.sort(sortBy.custom);
                     forEachFolder(cards, (card) => {
                     	/* add card */
                         const {cardImg} = createCard(card.name, `?subpage=${card.id}`, cardContainer);
@@ -67,6 +67,7 @@ function setCardBackground(user, card, cardImg) {
             const blob = new Blob([new Uint8Array(data.bytes)], { type: data.MimeType });
             const url = URL.createObjectURL(blob);
             cardImg.src = url;
+            cardImg.alt = data.name;
             cardImg.onload = function() {
                 URL.revokeObjectURL(url);
             }

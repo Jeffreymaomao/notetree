@@ -1,7 +1,9 @@
 import {get} from "../utility/get.js";
 import {visualize} from "../utility/visualize.js";
-import {forEachFolder} from "../utility/tools.js";
- 
+import {forEachFolder} from "../utility/tools.js"; 
+
+// This Page is Note Page, but for convenient, I call it subsubpage.
+
 function loadSubPage(struct, subpageId){
 	const content = document.getElementById("content");
 	content.innerHTML = "";
@@ -40,38 +42,54 @@ function mainSubPage(struct, subpage, container, level = 0) {
 	            const div = document.createElement("div");
 	            div.id = element.id;
 	            div.textContent = element.name;
-	            div.style.marginLeft = `${level * 30}px`; // 添加這一行來設置 margin-left
+	            div.style.marginLeft = `${level * 30}px`; // js add margin left
 	            container.appendChild(div);
 
-	            // const nameList = element.name.split(".").reverse();
-	            // const fileExt = nameList.length === 1 ? null : nameList[0];
-	            // console.log(fileExt);
-
 	            if (!element.MimeType.includes("directory")) {
+	            	const boundFetchAndDisplayData = fetchAndDisplayData.bind(null, struct, div);
+				    div.boundFetchAndDisplayData = boundFetchAndDisplayData;
 	            	div.classList.add("file-container");
-	                get(struct.user, element.id).then((file) => {
-	                	if(!file){
-		                    div.classList.add("get-empty");
-		                    return;
-	                	}
-	                    div.classList.add("get");
-	                    const displayDiv = visualize(file);
-	                    if(displayDiv) {
-	                        div.appendChild(displayDiv);
-	                        div.addEventListener("click",e=>{
-	                        	if([...displayDiv.children].includes(e.target)) return;
-	                        	displayDiv.classList.toggle("expand");
-	                        });
-	                    }
-	                });
+	            	div.addEventListener("click", boundFetchAndDisplayData);
+
+	            	const newTabIconDOM = document.createElement("a");
+	            	newTabIconDOM.classList.add("icon");
+	            	newTabIconDOM.classList.add("new-tab-icon");
+	            	newTabIconDOM.target = '_blank';
+	            	newTabIconDOM.href = `?id=${element.id}`;
+	            	div.appendChild(newTabIconDOM);
 	            } else {
-	                // 如果元素是資料夾，遞歸地調用 mainSubPage 函數來處理資料夾內的內容
+	                // if is element is directory recall this function itself
 	                div.classList.add("folder-container");
 	                mainSubPage(struct, element, container, level + 1);
 	            }
 	        }
 	    });
 	}
+}
+
+
+
+function fetchAndDisplayData(struct, parentNode, event) {
+	parentNode.classList.add("waiting");
+	parentNode.removeEventListener("click", parentNode.boundFetchAndDisplayData);
+
+    get(struct.user, parentNode.id).then((file) => {
+		parentNode.classList.remove("waiting");
+        if (!file) {
+            parentNode.classList.add("get-empty");
+            return;
+        }
+        parentNode.classList.add("get");
+        const displayDiv = visualize(file);
+        if (displayDiv) {
+            parentNode.appendChild(displayDiv);
+            parentNode.addEventListener("click", (e) => {
+                if (e.target===parentNode) displayDiv.classList.toggle("expand");
+            });
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
 
 

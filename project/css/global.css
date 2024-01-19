@@ -281,20 +281,26 @@ p.text{
 	content: url("./icon/anchor.svg");
 	padding-left: 20px;
 }
+
 .sub-title-anchor-icon:after{
 	content: url("./icon/anchor.svg");
 	padding-left: 10px;
 }
+
+.new-tab-icon:after{
+	content: url("./icon/newTab.svg");
+}
+
 /*------------------------------------------------------------------*
  | [color transformation](https://www.zhangxinxu.com/sp/filter.html)|
  *------------------------------------------------------------------*/
 
-.icon:before{
+.icon:before, .icon:after{
 	/* #000000 -> #D0D0D0 */
 	filter: invert(94%) sepia(0%) saturate(1389%) hue-rotate(12deg) brightness(117%) contrast(63%);
 }
 
-.icon:before{
+.icon:before, .icon:before{
 	/* #000000 -> #aaa */
 	filter: invert(78%) sepia(3%) saturate(12%) hue-rotate(351deg) brightness(87%) contrast(91%);
 }
