@@ -3,6 +3,7 @@ import {get} from "../utility/get.js";
 function visualize(file){
 	const contentContainer = document.createElement("div");
 	contentContainer.classList.add("content-container");
+
 	/* ----------------- Display Image ----------------- */
 	if(file.MimeType.includes("image")){
 		const img = document.createElement("img");
@@ -48,7 +49,6 @@ function visualize(file){
 
 		iframe.height = document.body.scrollHeight - 64;
 		window.addEventListener("resize",(e)=>{
-			console.log(document.body.scrollHeight);
 			iframe.height = document.body.scrollHeight - 64;
 		});
 		contentContainer.appendChild(iframe);

@@ -7,6 +7,9 @@ function loadTopBar(struct){
 	// --------------------------------
 	const userImageDom = document.getElementById("user-image");
 	const userNameDom = document.getElementById("user-name");
+	const menuBtnDom = document.getElementById("menu-btn");
+	const sidebarDom = document.getElementById("sidebar");
+	
 	const user = struct.user;
 	const userImageBase64 = sessionStorage.getItem("userImage");
 
@@ -18,7 +21,6 @@ function loadTopBar(struct){
 		userImageDom.src = "data:image/jpeg;base64," + userImageBase64;
 	}
 
-
 	const latestFile = getLatestImage(struct.children);
 
 	if (latestFile && userImageDom) {
@@ -28,8 +30,11 @@ function loadTopBar(struct){
 	        userImageDom.src = "data:image/jpeg;base64," + base64Image;
 	    });
 	}
-
 	// --------------------------------
+	if(!menuBtnDom) return;
+	menuBtnDom.addEventListener("click",(e)=>{
+		sidebarDom.classList.toggle("open");
+	});
 }
 
 export {loadTopBar};

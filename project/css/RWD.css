@@ -48,8 +48,13 @@
 		width: 100%;
 	}
 	/* ------------------------------------- */
+	.menu-icon-container{
+		display: block;
+	}
+	.profile-info{
+		left: 60px;
+	}
 	.sidebar{
-/*		display: none;*/
 		width: 0;
 	}
 	.content{
@@ -62,6 +67,12 @@
 	.link-btn-container{
 		padding-left: 20%;
 	}
+	/* ------------------------------------- */
+	.folder-name-anchor-icon:after,
+	.sub-title-anchor-icon:after,
+	.title-anchor-icon:after{
+		display: none;
+	} 
 }
 
 @media screen and (max-width: 450px){
