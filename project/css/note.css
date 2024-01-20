@@ -86,7 +86,7 @@ h6.folder-text, .folder-name-anchor-icon:after{
 
 /* - */
 .root-folder-list-item:first-child:before{
-	border-left: 0;
+	border: 0;
 	width: 32px;
 }
 .folder-list-item:last-child:after{

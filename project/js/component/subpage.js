@@ -54,7 +54,6 @@ function createAndAppendElement(parent, tag, attributes = {}) {
         delete attributes.class;  // delete class in attributes
     }
     // dataset
-    console.log(attributes.dataset)
     if (attributes.dataset) {
         Object.keys(attributes.dataset).forEach(key => element.dataset[key] = attributes.dataset[key]);
         delete attributes.dataset;  // delete dataset in attributes
