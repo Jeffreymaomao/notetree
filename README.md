@@ -18,11 +18,11 @@ NoteTree is a web application designed for efficient and intuitive note organiza
 
 ## Installation and Setup
 1. Clone the repository:
-   ```
-   git clone [repository-url]
+   ```shell
+   git clone https://github.com/Jeffreymaomao/notetree
    ```
 2. Navigate to the project directory:
-   ```
+   ```shell
    cd notetree
    ```
 3. Since the application is a client-side only, open the `index.html` in a web browser to run the application.
@@ -31,7 +31,7 @@ NoteTree is a web application designed for efficient and intuitive note organiza
 Describe how to use the application, including any necessary setup steps or important functionalities.
 
 ## Contact
-For any inquiries or feedback, please contact [Your Name] at [your-email@example.com].
+For any inquiries or feedback, please contact Chang-Mao Yang at  jeffrey0613mao@gmail.com.
 
 
 

@@ -19,11 +19,11 @@ NoteTree 是一個高效直觀的筆記組織和可視化網頁應用程序。�
 
 ## 安裝和設置
 1. 克隆倉庫：
-   ```
-   git clone [倉庫網址]
+   ```shell
+   git clone https://github.com/Jeffreymaomao/notetree
    ```
 2. 進入項目目錄：
-   ```
+   ```shell
    cd notetree
    ```
 3. 由於該應用僅為客戶端，直接在網絡瀏覽器中打開 `index.html` 即可運行應用。
@@ -32,7 +32,7 @@ NoteTree 是一個高效直觀的筆記組織和可視化網頁應用程序。�
 描述如何使用應用程序，包括任何必要的設置步驟或重要功能。
 
 ## 聯繫方式
-如有任何疑問或反饋，請通過 [您的郵箱@example.com] 聯繫 [您的名字]。
+如有任何疑問或反饋，請通過 jeffrey0613mao@gmail.com 聯繫楊長茂。
 
 
 
