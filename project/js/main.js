@@ -63,7 +63,6 @@ function main(struct){
 		loadSubPage(struct, subpage);
 	}
 	loadSideBar(struct, page, subpage);
-	
 }
 
 

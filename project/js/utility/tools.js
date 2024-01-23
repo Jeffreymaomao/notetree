@@ -4,9 +4,16 @@ class Loader {
         this.paranetNode = paranetNode;
         this.loaderContainer = document.createElement("div");
         this.loader = document.createElement("div");
+        this.logoContainer = document.createElement("div");
+        this.logo = document.createElement("div");
         this.loader.classList.add("loader");
+        this.logoContainer.classList.add("logo-container");
+        this.logo.classList.add("logo-black");
+        
         this.paranetNode.appendChild(this.loaderContainer);
         this.loaderContainer.appendChild(this.loader);
+        this.loader.appendChild(this.logoContainer);
+        this.logoContainer.appendChild(this.logo);
 
         this.loaderContainer.style.position = "absolute";
         this.loaderContainer.style.transition = 'all 0.3s ease-in-out';
@@ -18,14 +25,19 @@ class Loader {
         this.loaderContainer.style.height = "100%";
 
         this.loader.style.position = "absolute";
-        this.loader.style.top = "50%";
         this.loader.style.left = "50%";
+        this.loader.style.top = "50%";
         this.loader.style.transform = "translate(-50%,-50%)";
+
+        this.logoContainer.style.position = "absolute";
+        this.logoContainer.style.top = "50%";
+        this.logoContainer.style.left = "50%";
+        this.logoContainer.style.transform = "translate(-50%, -50%)";
 
         if (this.full_screen) {
             this.loaderContainer.style.zIndex = "1000";
             this.loaderContainer.style.position = "fixed";
-            this.loaderContainer.style.backgroundColor = "rgba(220,220,220,0.9)";
+            this.loaderContainer.style.backgroundColor = "rgba(230,230,230,0.9)";
         }
     }
     remove() {

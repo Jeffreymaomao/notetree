@@ -1,4 +1,5 @@
 import {get} from "../utility/get.js";
+import {Loader} from "../utility/tools.js";
 
 function visualize(file){
 	const contentContainer = document.createElement("div");
@@ -59,13 +60,13 @@ function visualize(file){
 
 function loadFile(struct, id) {
 	const contentDOM = document.querySelector("#content");
-	contentDOM.classList.toggle("loader");
+	let loader = new Loader(document.body, {full_screen:false});
 	get(struct.user, id).then((result) => {
-		contentDOM.classList.toggle("loader");
 		const displayDiv = visualize(result);
 		if(displayDiv){
 			contentDOM.appendChild(displayDiv);
 			displayDiv.classList.add("expand");
+			loader.remove();
 		}
 	}).catch((error) => {
 	    console.error(error);
