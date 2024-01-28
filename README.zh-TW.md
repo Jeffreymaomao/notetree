@@ -28,12 +28,16 @@ NoteTree 是一個高效直觀的筆記組織和可視化網頁應用程序。�
    ```
 3. 由於該應用僅為客戶端，直接在網絡瀏覽器中打開 `index.html` 即可運行應用。
 
-## 使用方法
-描述如何使用應用程序，包括任何必要的設置步驟或重要功能。
+## 附加資源
+
+- **網頁應用程式連結**：[notetree.xyz](https://notetree.xyz)
+- **項目介紹**：
+    - [介紹幻燈片 (HTML)](https://notetree.xyz/presentation/index.html)
+    - [介紹幻燈片 (PDF)](https://notetree.xyz/presentation/presentation.pdf)
 
 ## 聯繫方式
 如有任何疑問或反饋，請通過 jeffrey0613mao@gmail.com 聯繫楊長茂。
 
 
 
-備註： [README.en.md](README.md)
+備註： [README english version](README.md)

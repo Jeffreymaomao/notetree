@@ -27,12 +27,15 @@ NoteTree is a web application designed for efficient and intuitive note organiza
    ```
 3. Since the application is a client-side only, open the `index.html` in a web browser to run the application.
 
-## Usage
-Describe how to use the application, including any necessary setup steps or important functionalities.
+## Additional Resources
+- **Live Application**: [notetree.xyz](https://notetree.xyz)
+- **Project Presentation**: 
+    - [Presentation Slides (HTML)](https://notetree.xyz/presentation/index.html)
+    - [Presentation Slides (PDF)](https://notetree.xyz/presentation/presentation.pdf)
 
 ## Contact
 For any inquiries or feedback, please contact Chang-Mao Yang at  jeffrey0613mao@gmail.com.
 
 
 
-PS: [README.zh-TW.md](README.zh-TW.md)
+PS: [README 中文版](README.zh-TW.md)
